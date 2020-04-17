@@ -1,0 +1,24 @@
+{
+  "name": "wc-sevilla-2019",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Frontity project",
+  "keywords": [
+    "frontity"
+  ],
+  "scripts": {
+    "dev": "frontity dev",
+    "build": "frontity build",
+    "serve": "frontity serve"
+  },
+  "prettier": {},
+  "dependencies": {
+    "frontity": "^1.4.0",
+    "@frontity/core": "^1.3.0",
+    "@frontity/wp-source": "^1.4.0",
+    "@frontity/tiny-router": "^1.0.15",
+    "@frontity/html2react": "^1.1.12",
+    "@frontity/mars-theme": "./packages/mars-theme",
+    "wc-sevilla-theme": "./packages/wc-sevilla-theme"
+  }
+}

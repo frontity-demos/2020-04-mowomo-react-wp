@@ -1,31 +1,33 @@
-# Crea un tema con React en menos de 30 minutos
+# Crea un tema para Wordpress con React (con Frontity)
 
-Este repo la vamos a utilizar como segunda parte del taller [Crea un tema con React en menos de 30 minutos](https://2019-developers.sevilla.wordcamp.org/session/crea-un-tema-con-react-en-menos-de-30-minutos/) en la que vamos a crear un tema con React para WordPress.
+Proyecto con Frontity para la MOWOMO conference - April 2020
 
-Los slides de la primera parte [los puedes ver aquí](https://bit.ly/wc-sevilla-react).
+Este repo la vamos a utilizar como segunda parte del taller [Crea un tema para Wordpress con React (con Frontity)](https://mowomoevents.com/yomequedoencasa/ponencia/crea-un-tema-para-wordpress-con-react-con-frontity/) en la que vamos a crear un tema con React para WordPress.
+
+Los slides de la primera parte [los puedes ver aquí](https://bit.ly/mowomo-react).
 
 ## 1. Crear un proyecto con Frontity
 
-Lo primero que vamos a hacer es crear un nuevo projecto de Frontity.
+Lo primero que vamos a hacer es crear un nuevo proyecto de Frontity.
 
 Para eso, vamos utilizar este comando:
 
 ```bash
-npx frontity create wc-sevilla
+npx frontity create mowomo-frontity
 ```
 
-Cuando termine tendremos una nueva carpeta `/wc-sevilla` con el código de nuestro proyecto.
+Cuando termine tendremos una nueva carpeta `/mowomo-frontity` con el código de nuestro proyecto.
 
 Arrancamos el proyecto para ver que está funcionando:
 
 ```
-cd wc-sevilla
+cd mowomo-frontity
 npx frontity dev
 ```
 
 Abrimos http://localhost:3000 en el navegador (si no se ha abierto ya) y vemos nuestro primer proyecto de Frontity. De momento tiene el "starter theme" que viene por defecto: `@frontity/mars-theme` y está conectado a un WordPress de testing (https://test.frontity.io).
 
-Ahora vamos a cambiar las settings para apuntar a la REST API de la web del WC Sevilla 2019.
+Ahora vamos a cambiar las settings para apuntar a la REST API de la web de MOWOMO events.
 
 - Abrimos el archivo `frontity.settings.js`. Este fichero contiene la configuración de los paquetes de Frontity que estemos usando en el proyecto.
 - Cambiamos la configuración del campo `"api"` del paquete `@frontity/wp-source`:
@@ -45,12 +47,12 @@ Por esto:
 ```js
 state: {
   source: {
-    api: "https://2019-developers.sevilla.wordcamp.org/wp-json"
+    api: "https://mowomoevents.com/wp-json"
   }
 }
 ```
 
-Y si refrescamos, deberíamos ver los posts de la web del WC Sevilla 2019.
+Y si refrescamos, deberíamos ver los posts de la web del MOWOMO events.
 
 ## 2. Crear un tema desde cero
 
@@ -59,14 +61,14 @@ En vez de usar el tema que viene por defecto (`@frontity/mars-theme`) vamos a cr
 Paramos el proceso anterior (CONTROL+C) y después ejecutamos:
 
 ```bash
-npx frontity create-package wc-sevilla-theme
+npx frontity create-package mowomo-theme
 ```
 
 Nos preguntará qué `namespace` queremos. Como es un tema, vamos a usar `theme`.
 
-Una vez haya terminado tendremos una nueva carpeta `/packages/wc-sevilla-theme` en la que ya podemos empezar a trabajar.
+Una vez haya terminado tendremos una nueva carpeta `/packages/mowomo-theme` en la que ya podemos empezar a trabajar.
 
-Ahora tenemos que quitar `@frontity/mars-theme` de nuestras settings y sustituirlo por `wc-sevilla-theme`.
+Ahora tenemos que quitar `@frontity/mars-theme` de nuestras settings y sustituirlo por `mowomo-theme`.
 
 Eliminamos:
 
@@ -95,7 +97,7 @@ Y lo sustituimos por:
 
 ```js
 {
-  "name": "wc-sevilla-theme"
+  "name": "mowomo-theme"
 },
 ```
 
@@ -107,13 +109,13 @@ npx frontity dev
 
 ## 3. Modificar el primer componente
 
-Empezaremos modificando el componente `<Root>` que se encuentra en el fichero `/packages/wc-sevilla-theme/src/index.js`, para que devuelva un `<h1>` con "WordCamp Sevilla 💃".
+Empezaremos modificando el componente `<Root>` que se encuentra en el fichero `/packages/mowomo-theme/src/index.js`, para que devuelva un `<h1>` con "MOWOMO Evento #yomequedoencasa 🏠".
 
 ```jsx
 const Root = () => {
   return (
     <>
-      <h1>WordCamp Sevilla 💃</h1>
+      <h1>MOWOMO Evento #yomequedoencasa 🏠</h1>
     </>
   );
 };
@@ -122,14 +124,14 @@ const Root = () => {
 Ahora vamos a mover el componente `<Root>` a su propio archivo `Root.js`.
 
 ```jsx
-// Archivo: /packages/wc-sevilla-theme/src/Root.js
+// Archivo: /packages/mowomo-theme/src/Root.js
 
 import React from "react";
 
 const Root = () => {
   return (
     <>
-      <h1>WordCamp Sevilla 💃</h1>
+      <h1>MOWOMO Evento #yomequedoencasa 🏠</h1>
     </>
   );
 };
@@ -140,12 +142,12 @@ export default Root;
 Y finalmente lo importamos desde `index.js`.
 
 ```jsx
-// Archivo: /packages/wc-sevilla-theme/src/index.js
+// Archivo: /packages/mowomo-theme/src/index.js
 
 import Root from "./Root";
 
 export default {
-  name: "wc-sevilla-theme",
+  name: "mowomo-theme",
   roots: {
     theme: Root
   },
@@ -165,7 +167,7 @@ Vamos conectar el componente `<Root>` al estado de Frontity usando `connect`.
 Después, vamos a mostrar la URL en la que estamos, usando `state.router.link`:
 
 ```jsx
-// Archivo: /packages/wc-sevilla-theme/src/Root.js
+// Archivo: /packages/mowomo-theme/src/Root.js
 
 import React from "react";
 import { connect } from "frontity";
@@ -173,7 +175,7 @@ import { connect } from "frontity";
 const Root = ({ state }) => {
   return (
     <>
-      <h1>WordCamp Sevilla 💃</h1>
+      <h1>MOWOMO Evento #yomequedoencasa 🏠</h1>
       <p>Estamos en {state.router.link}</p>
     </>
   );
@@ -189,7 +191,7 @@ Podemos probar con una URL como: `http://localhost:3000/hola-sevilla` y vemos c�
 Creamos un componente `<Link>` en un nuevo archivo `Link.js`:
 
 ```jsx
-// Archivo: /packages/wc-sevilla-theme/src/Link.js
+// Archivo: /packages/mowomo-theme/src/Link.js
 
 import React from "react";
 import { connect } from "frontity";
@@ -216,14 +218,14 @@ export default connect(Link);
 Dentro de `<Root>` importamos el componente Link y añadimos un menú con dos rutas: "Inicio" y "Preguntas frecuentes":
 
 ```jsx
-// Archivo: /packages/wc-sevilla-theme/src/Root.js
+// Archivo: /packages/mowomo-theme/src/Root.js
 
 import Link from "./Link";
 
 const Root = ({ state }) => {
   return (
     <>
-      <h1>WordCamp Sevilla 💃</h1>
+      <h1>MOWOMO Evento #yomequedoencasa 🏠</h1>
       <p>Estamos en {state.router.link}</p>
       <nav>
         <Link href="/">Inicio</Link>
@@ -282,14 +284,14 @@ Finalmente, vamos a usar todo esto en nuestro código.
 Obtenemos la información del link actual (`state.router.link`) y lo usamos para ver si es una lista, un post o una página.
 
 ```jsx
-// Archivo: /packages/wc-sevilla-theme/src/Root.js
+// Archivo: /packages/mowomo-theme/src/Root.js
 
 const Root = ({ state }) => {
   const data = state.source.get(state.router.link);
 
   return (
     <>
-      <h1>WordCamp Sevilla 💃</h1>
+      <h1>MOWOMO Evento #yomequedoencasa 🏠</h1>
       <p>Estamos en {state.router.link}</p>
       <nav>
         <Link href="/">Inicio</Link>
@@ -312,7 +314,7 @@ const Root = ({ state }) => {
 Para mostrar la lista de posts, vamos a hacer un componente `<List>` que muestra la información que hay en `state.source.data`: el `type`, `id` y `link` de cada posts.
 
 ```jsx
-// Archivo: /packages/wc-sevilla-theme/src/List.js
+// Archivo: /packages/mowomo-theme/src/List.js
 
 import React from "react";
 import { connect } from "frontity";
@@ -339,7 +341,7 @@ export default connect(List);
 Y lo importamos en `Root.js`:
 
 ```jsx
-// Archivo: /packages/wc-sevilla-theme/src/Root.js
+// Archivo: /packages/mowomo-theme/src/Root.js
 
 // ...
 import List from "./List";
@@ -363,7 +365,7 @@ const Root = ({ state }) => {
 Ahora, desde el componente `<List>` accedemos a la información de cada uno de los posts, para mostrar el título y convertirlo en un link.
 
 ```jsx
-// Archivo: /packages/wc-sevilla-theme/src/List.js
+// Archivo: /packages/mowomo-theme/src/List.js
 
 import React from "react";
 import { connect } from "frontity";
@@ -392,7 +394,7 @@ const List = ({ state }) => {
 Creamos un componente `<Post>` para que muestre el título y el contenido:
 
 ```jsx
-// Archivo: /packages/wc-sevilla-theme/src/Post.js
+// Archivo: /packages/mowomo-theme/src/Post.js
 
 import React from "react";
 import { connect } from "frontity";
@@ -415,7 +417,7 @@ export default connect(Post);
 Y ahora, igual que antes, lo importamos en `Root.js` y lo usamos para los posts y las páginas:
 
 ```jsx
-// Archivo: /packages/wc-sevilla-theme/src/Root.js
+// Archivo: /packages/mowomo-theme/src/Root.js
 
 // ...
 import Post from "./Post";
@@ -445,7 +447,7 @@ Ahora mismo nuestra página no tiene ningún estilo. Vamos a añadir unos muy b�
 Lo primero que haremos será crear unos estilos globales y cambiar la fuente para que sea `sans-serif`. Para ello, importamos el componente `<Global>` y la función `css` de frontity en `Root.js`.
 
 ```jsx
-// Archivo: /packages/wc-sevilla-theme/src/Root.js
+// Archivo: /packages/mowomo-theme/src/Root.js
 
 // ...
 import { connect, Global, css } from "frontity";
@@ -477,7 +479,7 @@ Para que veamos un ejemplo, vamos a crear dos componente `<Header>`, `<Menu>` y 
 En el fichero `Root.js`, importamos `styled` y creamos los componentes anteriores.
 
 ```jsx
-// Archivo: /packages/wc-sevilla-theme/src/Root.js
+// Archivo: /packages/mowomo-theme/src/Root.js
 
 // ...
 import { connect, Global, css, styled } from "frontity";
@@ -519,7 +521,7 @@ const Main = styled.main`
 Una vez creados, los usaremos dentro de `<Root>`
 
 ```jsx
-// Archivo: /packages/wc-sevilla-theme/src/Root.js
+// Archivo: /packages/mowomo-theme/src/Root.js
 
 // ...
 
@@ -536,7 +538,7 @@ const Root = ({ state, actions }) => {
         `}
       />
       <Header>
-        <h1>WordCamp Sevilla 💃</h1>
+        <h1>MOWOMO Evento #yomequedoencasa 🏠</h1>
         <p>Estamos en {state.router.link}</p>
         <Menu>
           <Link href="/">Inicio</Link>
@@ -562,7 +564,7 @@ Haremos lo mismo para el componente `<List>`.
 En el fichero `List.js`, añadimos el componente `<Items>` y lo usamos dentro de`<List>`.
 
 ```jsx
-// Archivo: /packages/wc-sevilla-theme/src/List.js
+// Archivo: /packages/mowomo-theme/src/List.js
 
 const Items = styled.div`
   & > div {
@@ -592,7 +594,7 @@ const List = ({ state }) => {
 Y en el componente `Link` vamos a darle un poco de color a nuestros links:
 
 ```jsx
-// Archivo: /packages/wc-sevilla-theme/src/Link.js
+// Archivo: /packages/mowomo-theme/src/Link.js
 
 import React from "react";
 import { connect, styled } from "frontity";
@@ -626,7 +628,7 @@ Nos queda añadir algún estilo dinámico, para que veamos cómo modificar los e
 Por ejemplo, vamos a hacer que el color de fondo de nuestro `<Header>` cambie en función de la página que estemos visitando. Para ello, podemos añadir una función dentro del _template string_ de `<Header>`, donde podremos utilizar las props que le pasemos a dicho componente. En este caso, va a recibir la prop booleana `isPostType`, y mostrar un color azul si es `true` o verde si es `false`.
 
 ```jsx
-// Archivo: /packages/wc-sevilla-theme/src/Root.js
+// Archivo: /packages/mowomo-theme/src/Root.js
 
 // ...
 
@@ -649,7 +651,7 @@ const Header = styled.div`
 Una vez añadida la función, podemos pasarle la prop `isPostType` a `<Header>`.
 
 ```jsx
-// Archivo: /packages/wc-sevilla-theme/src/Root.js
+// Archivo: /packages/mowomo-theme/src/Root.js
 
 // ...
 
@@ -660,7 +662,7 @@ const Root = ({ state, actions }) => {
     <>
       {/* ... */}
       <Header isPostType={data.isPostType}>
-        <h1>WordCamp Sevilla 💃</h1>
+        <h1>MOWOMO Evento #yomequedoencasa 🏠</h1>
         <p>Estamos en {state.router.link}</p>
         <Menu>
           <Link href="/">Inicio</Link>
@@ -683,10 +685,10 @@ Por último, vamos a aprender cómo añadir nuestro propio estado y nuestras pro
 Volvemos al archivo `index.js` y añadimos una nuevo campo llamado `isMenuOpen` en `state.theme`. Por defecto lo vamos a dejar en `false`:
 
 ```js
-// Archivo: /packages/wc-sevilla-theme/src/index.js
+// Archivo: /packages/mowomo-theme/src/index.js
 
 export default {
-  name: "wc-sevilla-theme",
+  name: "mowomo-theme",
   roots: {
     theme: Root
   },
@@ -704,10 +706,10 @@ export default {
 También vamos a añadir dos acciones para modificar ese campo. Una para abrir el menú y otra para cerrarlo:
 
 ```js
-// Archivo: /packages/wc-sevilla-theme/src/index.js
+// Archivo: /packages/mowomo-theme/src/index.js
 
 export default {
-  name: "wc-sevilla-theme",
+  name: "mowomo-theme",
   roots: {
     theme: Root
   },
@@ -735,7 +737,7 @@ Por último, vamos a ir a nuestro archivo `Root.js` y vamos a modificar nuestro 
 Cambiamos esto:
 
 ```jsx
-// Archivo: /packages/wc-sevilla-theme/src/Root.js
+// Archivo: /packages/mowomo-theme/src/Root.js
 
 // ...
 
@@ -759,7 +761,7 @@ const Root = ({ state, actions }) => {
 Por esto:
 
 ```jsx
-// Archivo: /packages/wc-sevilla-theme/src/Root.js
+// Archivo: /packages/mowomo-theme/src/Root.js
 
 // ...
 
@@ -789,7 +791,7 @@ El menú ha desaparecido, pero no te preocupes, vamos a añadir dos botones.
 Primero uno que se va a encargar de mostrar el menú cuando lo pulsemos. Es tan sencillo como poner un elemento `<button>` y pasarle la acción `openMenu` en la prop `onClick`.
 
 ```jsx
-// Archivo: /packages/wc-sevilla-theme/src/Root.js
+// Archivo: /packages/mowomo-theme/src/Root.js
 
 // ...
 
@@ -811,7 +813,7 @@ Primero uno que se va a encargar de mostrar el menú cuando lo pulsemos. Es tan 
 Ahora el menú se queda abierto. Nos falta añadir un botón para poder cerrarlo.
 
 ```jsx
-// Archivo: /packages/wc-sevilla-theme/src/Root.js
+// Archivo: /packages/mowomo-theme/src/Root.js
 
 // ...
 
@@ -834,7 +836,7 @@ Ahora el menú se queda abierto. Nos falta añadir un botón para poder cerrarlo
 Por último, vamos a darle algo de estilo a nuestro botón de menú, de la misma forma que hemos hecho antes, usando `styled`.
 
 ```jsx
-// Archivo: /packages/wc-sevilla-theme/src/Root.js
+// Archivo: /packages/mowomo-theme/src/Root.js
 
 // ...
 
@@ -852,7 +854,7 @@ const Button = styled.button`
 Sólo queda sustituir los elementos `<button>` por el componente `<Button>` y ya estaría todo.
 
 ```jsx
-// Archivo: /packages/wc-sevilla-theme/src/Root.js
+// Archivo: /packages/mowomo-theme/src/Root.js
 
 // ...
 
@@ -877,7 +879,7 @@ Sólo queda sustituir los elementos `<button>` por el componente `<Button>` y ya
 Para añadir etiquetas en el `<head>` de vuestra página también vamos a utilizar React. Simplemente importamos el componente `<Head>` y todo lo que incluyamos dentro acabará ahí.
 
 ```jsx
-// Archivo: /packages/wc-sevilla-theme/src/Root.js
+// Archivo: /packages/mowomo-theme/src/Root.js
 import { ..., Head } from "frontity";
 
 // ...

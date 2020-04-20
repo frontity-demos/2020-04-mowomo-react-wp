@@ -4,7 +4,7 @@ Proyecto con Frontity para la MOWOMO conference - April 2020
 
 Este repo la vamos a utilizar como segunda parte del taller [Crea un tema para Wordpress con React (con Frontity)](https://mowomoevents.com/yomequedoencasa/ponencia/crea-un-tema-para-wordpress-con-react-con-frontity/) en la que vamos a crear un tema con React para WordPress.
 
-Los slides de la primera parte [los puedes ver aquí](https://bit.ly/mowomo-react).
+Los slides de la primera parte [los puedes ver aquí](https://bit.ly/Mowomo-EnCasa-React).
 
 ## 1. Crear un proyecto con Frontity
 

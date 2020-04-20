@@ -9,13 +9,13 @@ const settings = {
   },
   packages: [
     {
-      name: "wc-sevilla-theme"
+      name: "mowomo-theme"
     },
     {
       name: "@frontity/wp-source",
       state: {
         source: {
-          api: "https://2019-developers.sevilla.wordcamp.org/wp-json"
+          api: "https://mowomoevents.com/yomequedoencasa/wp-json"
         }
       }
     },

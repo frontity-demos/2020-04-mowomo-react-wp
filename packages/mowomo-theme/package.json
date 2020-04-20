@@ -1,0 +1,14 @@
+{
+  "name": "mowomo-theme",
+  "version": "1.0.0",
+  "description": "A starter theme for the MOWOMO conference #yomequedoencasa",
+  "keywords": [
+    "frontity",
+    "frontity-theme"
+  ],
+  "homepage": "https://mowomoevents.com/yomequedoencasa/",
+  "license": "Apache-2.0",
+  "dependencies": {
+    "frontity": "^1.4.0"
+  }
+}

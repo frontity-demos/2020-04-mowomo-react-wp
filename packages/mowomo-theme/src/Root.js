@@ -10,7 +10,7 @@ const Root = ({ state, actions }) => {
   return (
     <>
       <Head>
-        <title>WordCamp Sevilla 2019</title>
+        <title>MOWOMO Evento #yomequedoencasa 🏠</title>
         <meta
           name="description"
           content="El tema de React de la primera WC para devs!"
@@ -24,7 +24,7 @@ const Root = ({ state, actions }) => {
         `}
       />
       <Header isPostType={data.isPostType}>
-        <h1>WordCamp Sevilla 💃</h1>
+        <h1>MOWOMO Evento #yomequedoencasa 🏠</h1>
         <p>Estamos en {state.router.link}</p>
         {state.theme.isMenuOpen ? (
           <>

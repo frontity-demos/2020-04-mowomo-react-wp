@@ -1,5 +1,6 @@
 # Crea un tema para Wordpress con React (con Frontity)
 
+[![Crea un tema para Wordpress con React (con Frontity)](https://mowomoevents.com/wp-content/uploads/sites/2/2020/03/1-ponente-ma%C3%B1ana-juan-manuel-garrido.png)](https://www.youtube.com/watch?v=IRtoPpgx7Vg)
 Proyecto con Frontity para la MOWOMO conference - April 2020
 
 Este repo la vamos a utilizar como segunda parte del taller [Crea un tema para Wordpress con React (con Frontity)](https://mowomoevents.com/yomequedoencasa/ponencia/crea-un-tema-para-wordpress-con-react-con-frontity/) en la que vamos a crear un tema con React para WordPress.
